@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Authentication Sample</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $('document').ready(function() {
+          $('#get-btn').click(function() {
+            $.post('http://localhost:8080/authenticate',
+              {
+                peerId: 'TestPeerID',
+                sessionToken: '4CXS0f19nvMJBYK05o3toTWtZF5Lfd2t6Ikr2lID'
+              }, function(credential) {
+                $('#result').text(JSON.stringify(credential, null, 2));
+
+                // use the credential to create new Peer() here.
+//                var peer = new Peer('TestPeerID', {
+//                  apikey: apikey,
+//                  credential: credential
+//                });
+//
+//                peer.on('open', function() {
+//                  // ...
+//                });
+              }
+            ).fail(function() {
+              alert('Peer Authentication Failed');
+            });
+          });
+        });
+    </script>
+</head>
+<body>
+<input type="button" id="get-btn" value="Get Credential">
+<pre id="result"></pre>
+</body>
+</html>

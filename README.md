@@ -59,6 +59,14 @@ $.post('http://localhost:8080/authenticate',
   });
 ```
 
+### Sample HTML/Javascript File
 
+There is a sample HTML/Javascript implementation of client authentication in the `client/` directory.
 
+You can serve the html file using:
+```bash
+$ cd client
+$ python -m SimpleHTTPServer 8000
+```
 
+Access http://localhost:8000 and click the `Get Credential` button while one of the sample servers is running.
