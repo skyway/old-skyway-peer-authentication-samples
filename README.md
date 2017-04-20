@@ -1,10 +1,12 @@
+[このドキュメントの日本語版](./README.jp.md)
+
 # SkyWay Peer Authentication Samples
 
 This repository contains samples that show how to calculate the credentials for authenticating peers.
 
 ## Credential format
 
-The credential passed to `new Peer()` is a JSON object in the following format.
+The credential passed to `new Peer()` is a Javascript object in the following format.
 
 ```javascript
 {
@@ -22,12 +24,15 @@ The ttl is a value given in seconds between 600 (10 minutes) and 90000 (25 hours
 
 The timestamp is the current unix time (seconds).
 
-*NOTE: A timestamp in the future will be rejected.*
+**Warning: A timestamp in the future will be rejected.**
 
 ### authToken
 
-The authentication token for the peerId, calculated from the current peerId, the current timestamp and the ttl.
-You can calculate it HMAC with H256 on the string `$timestamp:$ttl:$peerId`. You can find the secret key for your app on the developer's dashboard.
+The authentication token for the peerId, calculated from the current `peerId`, the current `timestamp`, the `ttl`, and the app `secretkey`.
+You can find the secret key for your app on the developer's dashboard.
+
+It is calculated using the HMAC-SHA256 algorithm on the string `$timestamp:$ttl:$peerId`, with the secret key for the app. 
+
 The final value MUST be in base64 string format.
 
 ## Using the samples
@@ -41,7 +46,7 @@ Optionally, you can implement the `checkSessionToken()` or `check_session_token(
 The authentication with the session token is not implemented in the samples and always returns true.
 In the samples, we use a session token but it could also be a password check to authenticate the user.
 
-POST a request to the server at port `8080` to the `/authenticate` endpoint. 
+POST a request to the server at http://localhost:8080/authenticate. 
 The request must contain the `peerId` and `sessionToken` parameters, sent as `application/x-www-form-urlencoded`.
 See [Example using JavaScript with JQuery](#example-using-javascript-with-jquery)  below, or run the sample client described in [Sample Client Script](#sample-client-script). 
 
