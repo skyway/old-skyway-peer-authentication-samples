@@ -34,9 +34,16 @@ The final value MUST be in base64 string format.
 
 Look at the README in each individual language folder for information on how to run the server.
 
-POST a request to the server at port `8080` to the `/authenticate` endpoint. The request must containing something authenticating the peer.
-In the samples, we use a session token but it could also be a password.
+Before you run the sample you should set the `secretkey` variable in the marked `Config section` with the one for your app.
+You can find the secret key for your app on the developer's dashboard.
+
+Optionally, you can implement the `checkSessionToken()` or `check_session_token()` functions to check if the session token passed to the server is valid.
 The authentication with the session token is not implemented in the samples and always returns true.
+In the samples, we use a session token but it could also be a password check to authenticate the user.
+
+POST a request to the server at port `8080` to the `/authenticate` endpoint. 
+The request must contain the `peerId` and `sessionToken` parameters, sent as `application/x-www-form-urlencoded`.
+See [Example using JavaScript with JQuery](#example-using-javascript-with-jquery)  below, or run the sample client described in [Sample Client Script](#sample-client-script). 
 
 ### Example using JavaScript with JQuery
 
@@ -59,7 +66,7 @@ $.post('http://localhost:8080/authenticate',
   });
 ```
 
-### Sample HTML/Javascript File
+### Sample Client Script
 
 There is a sample HTML/Javascript implementation of client authentication in the `client/` directory.
 
