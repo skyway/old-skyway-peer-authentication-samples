@@ -13,7 +13,7 @@ import urlparse
 #         replace with your own values         #
 ################################################
 
-secretkey = 'YourSecretKey' # replace with your own secretkey from the dashboard
+secretKey = 'YourSecretKey' # replace with your own secretKey from the dashboard
 credentialTTL = 3600 # 1 hour
 
 #################################################
@@ -30,7 +30,7 @@ def calculate_auth_token(peerId, timestamp):
     print message
     # Generate the hash.
     return hmac.new(
-        secretkey,
+        secretKey,
         message,
         hashlib.sha256
     ).digest().encode("base64").rstrip('\n')
@@ -50,6 +50,11 @@ class PostHandler(BaseHTTPRequestHandler):
             postvars = cgi.parse_qs(self.rfile.read(length), keep_blank_values=1)
 
             unix_timestamp = int(time.time())
+            if ('peerId' not in postvars or 'sessionToken' not in postvars):
+                self.send_response(400)
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                return
             peer_id = postvars['peerId'][0]
             session_token = postvars['sessionToken'][0]
 
@@ -64,16 +69,18 @@ class PostHandler(BaseHTTPRequestHandler):
 
                 self.rfile.close()
                 self.send_response(200)
-                self.send_header('Content-Type', 'application/json')
                 self.send_header('Access-Control-Allow-Origin', '*')
+                self.send_header('Content-Type', 'application/json')
                 self.end_headers()
                 self.wfile.write(json.dumps(credential))
             else:
                 # Session token check failed
                 self.send_response(401)
+                self.send_header('Access-Control-Allow-Origin', '*')
                 self.end_headers()
         else:
             self.send_response(404)
+            self.send_header('Access-Control-Allow-Origin', '*')
             self.end_headers()
         return
 

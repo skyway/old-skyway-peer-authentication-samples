@@ -11,8 +11,8 @@ set :port, 8080
 #         replace with your own values         #
 ################################################
 
-$secretkey = "YourSecretKey"
-$credential_ttl = 3600
+SECRET_KEY = "YourSecretKey"
+CREDENTIAL_TTL = 3600
 
 #################################################
 #            Config section finished            #
@@ -26,15 +26,20 @@ post '/authenticate' do
   peer_id = params['peerId']
   session_token = params['sessionToken']
 
+  if peer_id == nil || session_token == nil
+    status 400
+    return
+  end
+
   if check_session_token(peer_id, session_token)
     # Session token check was successful.
     unix_timestamp = Time.now.to_i
 
     credential = {
-        :peerId => peer_id,
-        :timestamp => unix_timestamp,
-        :ttl => $credential_ttl,
-        :authToken => calculate_auth_token(peer_id, unix_timestamp)
+        peerId: peer_id,
+        timestamp: unix_timestamp,
+        ttl: CREDENTIAL_TTL,
+        authToken: calculate_auth_token(peer_id, unix_timestamp)
     }
 
     body JSON.generate(credential)
@@ -52,7 +57,7 @@ def check_session_token(peer_id, token)
 end
 
 def calculate_auth_token(peer_id, timestamp)
-  message = "#{timestamp}:#{$credential_ttl}:#{peer_id}"
-  hash = OpenSSL::HMAC.digest(OpenSSL::Digest.new('sha256'), $secretkey, message)
+  message = "#{timestamp}:#{CREDENTIAL_TTL}:#{peer_id}"
+  hash = OpenSSL::HMAC.digest(OpenSSL::Digest.new('sha256'), SECRET_KEY, message)
   Base64.encode64(hash).strip()
 end

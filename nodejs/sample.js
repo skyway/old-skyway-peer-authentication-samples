@@ -11,7 +11,7 @@ const CryptoJS = require('crypto-js');
  *         replace with your own values         *
  ************************************************/
 
-const secretkey = 'YourSecretKey'; // replace with your own secretkey from the dashboard
+const secretKey = 'YourSecretKey'; // replace with your own secretKey from the dashboard
 const credentialTTL = 3600; // 1 hour
 
 /************************************************
@@ -30,6 +30,11 @@ app.use(function(req, res, next) {
 app.post('/authenticate', (req, res) => {
   const peerId = req.body.peerId;
   const sessionToken = req.body.sessionToken;
+
+  if(peerId === undefined || sessionToken === undefined) {
+    res.status(400).send('Bad Request');
+    return;
+  }
 
   checkSessionToken(peerId, sessionToken).then(() => {
     // Session token check was successful.
@@ -67,7 +72,7 @@ function checkSessionToken(peerId, token) {
 
 function calculateAuthToken(peerId, timestamp) {
   // calculate the auth token hash
-  const hash = CryptoJS.HmacSHA256(`${timestamp}:${credentialTTL}:${peerId}`, secretkey);
+  const hash = CryptoJS.HmacSHA256(`${timestamp}:${credentialTTL}:${peerId}`, secretKey);
 
   // convert the hash to a base64 string
   return CryptoJS.enc.Base64.stringify(hash);

@@ -5,7 +5,7 @@
  *         replace with your own values         *
  ************************************************/
 
-define('SECRETKEY', 'YourSecretKey'); // replace with your own secretkey from the dashboard
+define('SECRETKEY', 'YourSecretKey'); // replace with your own secretKey from the dashboard
 define('CREDENTIALTTL', 3600); // 1 hour
 
 /************************************************
@@ -13,13 +13,17 @@ define('CREDENTIALTTL', 3600); // 1 hour
  ************************************************/
 
 header("Access-Control-Allow-Origin: *");
-header('Content-Type: application/json');
-
-$peerId = $_POST['peerId'];
-$sessionToken = $_POST['sessionToken'];
 
 if ($_SERVER["REQUEST_URI"] == '/authenticate' &&
     $_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    if(!isset($_POST['peerId']) || !isset($_POST['sessionToken'])) {
+        http_response_code(400);
+        echo 'Bad Request';
+        exit();
+    }
+
+    header('Content-Type: application/json');
 
     $peerId = $_POST['peerId'];
     $sessionToken = $_POST['sessionToken'];
@@ -43,9 +47,8 @@ if ($_SERVER["REQUEST_URI"] == '/authenticate' &&
 
     exit();
 } else {
-    header('HTTP/1.0 404 Not Found');
-    echo "The page that you have requested could not be found.";
     http_response_code(404);
+    echo "The page that you have requested could not be found.";
     exit();
 }
 

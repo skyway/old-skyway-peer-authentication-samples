@@ -28,7 +28,7 @@ The timestamp is the current unix time (seconds).
 
 ### authToken
 
-The authentication token for the peerId, calculated from the current `peerId`, the current `timestamp`, the `ttl`, and the app `secretkey`.
+The authentication token for the peerId, calculated from the current `peerId`, the current `timestamp`, the `ttl`, and the app `secretKey`.
 You can find the secret key for your app on the developer's dashboard.
 
 It is calculated using the HMAC-SHA256 algorithm on the string `$timestamp:$ttl:$peerId`, with the secret key for the app. 
@@ -39,7 +39,7 @@ The final value MUST be in base64 string format.
 
 Look at the README in each individual language folder for information on how to run the server.
 
-Before you run the sample you should set the `secretkey` variable in the marked `Config section` with the one for your app.
+Before you run the sample you should set the `secretKey` variable in the marked `Config section` with the one for your app.
 You can find the secret key for your app on the developer's dashboard.
 
 Optionally, you can implement the `checkSessionToken()` or `check_session_token()` functions to check if the session token passed to the server is valid.
@@ -48,9 +48,9 @@ In the samples, we use a session token but it could also be a password check to 
 
 POST a request to the server at http://localhost:8080/authenticate. 
 The request must contain the `peerId` and `sessionToken` parameters, sent as `application/x-www-form-urlencoded`.
-See [Example using JavaScript with JQuery](#example-using-javascript-with-jquery)  below, or run the sample client described in [Sample Client Script](#sample-client-script). 
+See [Example using JavaScript with jQuery](#example-using-javascript-with-jquery)  below, or run the sample client described in [Sample Client Script](#sample-client-script). 
 
-### Example using JavaScript with JQuery
+### Example using JavaScript with jQuery
 
 ```javascript
 $.post('http://localhost:8080/authenticate',
