@@ -4,6 +4,16 @@
 
 このリポジトリには、Peerを認証するためのクレデンシャルを生成するサンプルがあります。
 
+## 全体の認証フロー
+
+![Peer Authentication Sequence](imgs/sequence_jp.png)
+
+1. クライアントのpeerIdとセッショントークン、またはパスワードを自前の認証サーバに送信する
+2. peerIdとセッショントークンが正しいか確認する
+3. [authtoken](#authtoken)で定義された方法でauthTokenを生成する
+4. （authToken、timestamp、ttlが含まれてる）credentialオブジェクトをクライアントに返信する
+5. [例：JavaScriptとjQueryを利用したリクエスト](#例javascriptとjqueryを利用したリクエスト)のように `new Peer()`のオプション引数に認証サーバから取得したcredentialを渡してSkyWayのサーバに接続する。
+
 ## クレデンシャルの形式
 
 `new Peer()` の `option` 引数に入る `credential` は下記の形式のJavaScriptオブジェクトです。

@@ -4,6 +4,16 @@
 
 This repository contains samples that show how to calculate the credentials for authenticating peers.
 
+## Overall flow
+
+![Peer Authentication Sequence](imgs/sequence_en.png)
+
+1. Send the client's peerId and session token or password to your Authentication server
+2. Authenticate the peerId and session token
+3. Create an authToken following the directions in [authtoken](#authtoken)
+4. Send the credential object, (authToken, timestamp and token ttl,) back to the client
+5. Connect to the SkyWay Server as normal using `new Peer()`, passing the credential as shown in [Example using JavaScript with jQuery](#example-using-javascript-with-jquery)
+
 ## Credential format
 
 The credential passed to `new Peer()` is a Javascript object in the following format.
