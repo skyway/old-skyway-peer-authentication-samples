@@ -12,7 +12,7 @@
 2. ユーザ側の認証基盤でセッショントークンやパスワードにて認証を行う
 3. [authtoken](#authtoken)で定義された方法でauthTokenを生成する
 4. （authToken、timestamp、ttlが含まれてる）credentialオブジェクトをクライアントに返信する
-5. [例：JavaScriptとjQueryを利用したリクエスト](#例javascriptとjqueryを利用したリクエスト)のように `new Peer()`のオプション引数に認証サーバから取得したcredentialを渡してSkyWayのサーバに接続する。
+5. [例：JavaScriptとjQueryを利用したリクエスト](#例javascriptとjqueryを利用したリクエスト)のように `new Peer()`のオプション引数に認証サーバから取得したcredentialを渡してSkyWayのサーバに接続する
 
 ## クレデンシャルの形式
 
