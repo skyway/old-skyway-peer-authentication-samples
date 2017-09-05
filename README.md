@@ -1,6 +1,6 @@
 [このドキュメントの日本語版](./README.jp.md)
 
-# ECLWebRTC Peer Authentication Samples
+# SkyWay Peer Authentication Samples
 
 This repository contains samples that show how to calculate the credentials for authenticating peers.
 
@@ -12,7 +12,7 @@ This repository contains samples that show how to calculate the credentials for 
 2. Authenticate the peerId and session token using your Authentication server
 3. Create an authToken following the directions in [authtoken](#authtoken)
 4. Send the credential object, (authToken, timestamp and token ttl,) back to the client
-5. Connect to the ECLWebRTC Server as normal using `new Peer()`, passing the credential as shown in [Example using JavaScript with jQuery](#example-using-javascript-with-jquery)
+5. Connect to the SkyWay Server as normal using `new Peer()`, passing the credential as shown in [Example using JavaScript with jQuery](#example-using-javascript-with-jquery)
 
 ## Credential format
 
@@ -28,7 +28,7 @@ The credential passed to `new Peer()` is a Javascript object in the following fo
 
 ### ttl
 
-The ttl is a value given in seconds between 600 (10 minutes) and 90000 (25 hours). After the ttl runs out, all connections to ECLWebRTC servers are disconnected.
+The ttl is a value given in seconds between 600 (10 minutes) and 90000 (25 hours). After the ttl runs out, all connections to SkyWay servers are disconnected.
 
 ### timestamp
 
