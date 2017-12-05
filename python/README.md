@@ -9,7 +9,7 @@ no setup is required
 Note this sample is written for Python2.
 
 ```bash
-$ python sample.php 
+$ python sample.py
 ```
 
 You can now post to `http://localhost:8080/authenticate` to generate a credential.
