@@ -24,6 +24,11 @@
 //                peer.on('open', function() {
 //                  // ...
 //                });
+//
+//                peer.on('error', function() {
+//                    // When there is an error and you need to start from the beginning,
+//                    // make sure to get a new credential from the server.
+//                })
               }
             ).fail(function() {
               alert('Peer Authentication Failed');
