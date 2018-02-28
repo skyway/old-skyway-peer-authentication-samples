@@ -14,6 +14,8 @@ This repository contains samples that show how to calculate the credentials for 
 4. Send the credential object, (authToken, timestamp and token ttl,) back to the client
 5. Connect to the SkyWay Server as normal using `new Peer()`, passing the credential as shown in [Example using JavaScript with jQuery](#example-using-javascript-with-jquery)
 
+**Warning: Start again from step 1 and create a new authToken every time you call `new Peer()`.** If a client disconnected uncleanly due to network or other problems, the same peerId and authToken combination cannot be used for some time. It is possible to connect again immediately if a new authToken is used.
+
 ## Credential format
 
 The credential passed to `new Peer()` is a Javascript object in the following format.
