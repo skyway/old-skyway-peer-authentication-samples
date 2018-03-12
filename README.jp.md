@@ -14,7 +14,7 @@
 4. （authToken、timestamp、ttlが含まれてる）credentialオブジェクトをクライアントに返信する
 5. [例：JavaScriptとjQueryを利用したリクエスト](#例javascriptとjqueryを利用したリクエスト)のように `new Peer()`のオプション引数に認証サーバから取得したcredentialを渡してSkyWayのサーバに接続する
 
-**※注意: new Peer() を実行する際は、毎回1〜5の手順を実施し、authTokenを更新して下さい。** ネットワークの切断等で前のセッションがきれいに終了せず残っている場合、一定期間、同じPeerIdとauthTokenの組み合わせで再接続することが出来ません。authTokenを更新すればすぐに再接続が可能です。**
+**※注意: new Peer() を実行する際は、毎回1〜5の手順を実施し、credentialを更新して下さい。** ネットワークの切断等で前のセッションがきれいに終了せず残っている場合、一定期間、同じcredentialで再接続することが出来ません。credentialを更新すればすぐに再接続が可能です。
 
 ## クレデンシャルの形式
 
