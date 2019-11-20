@@ -34,11 +34,14 @@
 有効期限が切れた場合、SkyWayサーバへの接続が切断されます。
 `ttl` の単位は秒で、600（10分）から90000（25時間）の間で設定してください。
 
+**※注意: Peer認証のクレデンシャルの有効期限を延長したい場合には `Peer.updateCredential()` をお使いください。**
+既存のSkyWayサーバへの接続を切断することなく新しく生成したクレデンシャルを更新することができます。
+
 ### timestamp
 
 `timestamp` は現在時刻のUnixタイムスタンプ（秒）です。
 
-**注: 未来の時刻のタイムスタンプは拒否される。**
+**※注意: 未来の時刻のタイムスタンプは拒否されます。**
 
 ### authToken
 
@@ -48,7 +51,6 @@
 `$timestamp:$ttl:$peerId`の文字列にAppの`secretKey`を秘密鍵として利用して、HMAC-SHA256 アルゴリズムを利用して計算します。
 
 計算されたハッシュはBase64形式である必要があります。
-
 
 ## サンプルの利用方法
 
@@ -79,7 +81,7 @@ $.post('http://localhost:8080/authenticate',
       apikey: apikey,
       credential: credential
     });
-    
+
     peer.on('open', function() {
       // ...
     });
@@ -93,6 +95,7 @@ $.post('http://localhost:8080/authenticate',
 HTML/JavaScriptのクライアント認証サンプルが`client/`フォルダーに入ってます。
 
 下記のコマンドを利用して、クライアントファイルをアクセス可能にします。
+
 ```bash
 $ cd client
 $ python -m SimpleHTTPServer 8000

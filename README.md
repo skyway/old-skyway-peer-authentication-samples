@@ -32,6 +32,9 @@ The credential passed to `new Peer()` is a Javascript object in the following fo
 
 The ttl is a value given in seconds between 600 (10 minutes) and 90000 (25 hours). After the ttl runs out, all connections to SkyWay servers are disconnected.
 
+**※Warning: If you want to extend TTL of authentication, `Peer.updateCredential()` can help you.**
+This method makes it possible to update credential without disconnected with SkyWay servers.
+
 ### timestamp
 
 The timestamp is the current unix time (seconds).
@@ -74,7 +77,7 @@ $.post('http://localhost:8080/authenticate',
       apikey: apikey,
       credential: credential
     });
-    
+
     peer.on('open', function() {
       // ...
     });
@@ -88,6 +91,7 @@ $.post('http://localhost:8080/authenticate',
 There is a sample HTML/Javascript implementation of client authentication in the `client/` directory.
 
 You can serve the html file using:
+
 ```bash
 $ cd client
 $ python -m SimpleHTTPServer 8000
