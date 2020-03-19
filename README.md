@@ -74,7 +74,7 @@ $.post('http://localhost:8080/authenticate',
     sessionToken: '4CXS0f19nvMJBYK05o3toTWtZF5Lfd2t6Ikr2lID'
   }, function(credential) {
     var peer = new Peer('TestPeerID', {
-      apikey: apikey,
+      key: apikey,
       credential: credential
     });
 
