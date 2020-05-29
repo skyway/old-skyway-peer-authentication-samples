@@ -14,11 +14,21 @@ import (
 	"github.com/labstack/echo/v4/middleware"
 )
 
+/************************************************
+ *            Config section start              *
+ *         replace with your own values         *
+ ************************************************/
+
 var (
 	secretKey     = ""   // replace with your own secretKey from the dashboard
 	credentialTTL = 3600 // 1 hour
 )
 
+/************************************************
+ *            Config section finished           *
+ ************************************************/
+
+// Response return response
 type Response struct {
 	PeerId    string `json:"peerId"`
 	Timestamp int64  `json:"timestamp"`
