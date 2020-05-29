@@ -20,8 +20,8 @@ import (
  ************************************************/
 
 var (
-	secretKey     = ""   // replace with your own secretKey from the dashboard
-	credentialTTL = 3600 // 1 hour
+	secretKey     = "YourSecretKey" // replace with your own secretKey from the dashboard
+	credentialTTL = 3600            // 1 hour
 )
 
 /************************************************
