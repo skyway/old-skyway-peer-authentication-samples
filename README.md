@@ -2,6 +2,10 @@
 
 # SkyWay Peer Authentication Samples
 
+**This is the old SkyWay repository.  Please consider migrating to the [new SkyWay](<https://skyway.ntt.com>).**
+
+---
+
 This repository contains samples that show how to calculate the credentials for authenticating peers.
 
 ## Overall flow
